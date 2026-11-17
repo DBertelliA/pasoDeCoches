@@ -16,7 +16,11 @@ public class Coche extends Thread{
 
     @Override
     public void run(){
-        puente.sePermiteElPaso(getPesoCoche());
+        if(puente.sePermiteElPaso(getPesoCoche())){
+            System.out.println("//Se ha reazlido el pase");
+        }else {
+            System.out.println("//NO se ha reazlido el pase");
+        }
     }
 
 }
