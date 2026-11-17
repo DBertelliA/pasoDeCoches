@@ -44,6 +44,8 @@ public class Puente {
         }
         try {
             if(b) {
+                caracteristicasActuales();
+
                 int cantidadAEsperar = rd.nextInt(10, 21) * 1000;
                 System.out.println("HEY QUE ENTRÉ, habee cuanto tardo... " + cantidadAEsperar);
 
@@ -52,7 +54,6 @@ public class Puente {
 
                 System.out.println("------Acabo de salir------");
 
-                caracteristicasActuales();
                 return true;
             }else {
                 System.out.println("mal");
@@ -67,7 +68,7 @@ public class Puente {
     private boolean prueba(int pesoI) {
         try {
                 System.out.println("Voy a intentar meterme en el puente pipi!!");
-                while ((getNumeroCochesAct() >= getNumeroMaxCoches() || getPesoActual() >= getPesoMaximo())) {
+                while ((getNumeroCochesAct() >= getNumeroMaxCoches() || getPesoActual() > getPesoMaximo()) || (getPesoActual() + pesoI) > getPesoMaximo()) {
                     System.out.println("El puente está lleno, que guay... voy a esperar");
                     objecto.wait();
                 }
@@ -76,8 +77,6 @@ public class Puente {
 
                     setNumeroCochesAct(getNumeroCochesAct() + 1);
                     setPesoActual(getPesoActual() + pesoI);
-
-                    caracteristicasActuales();
                     return true;
                 }
             }catch (InterruptedException e){
